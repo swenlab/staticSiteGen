@@ -1,4 +1,5 @@
 import os
+import sys
 import shutil
 from textnode import TextNode
 from textnode import TextType
@@ -10,12 +11,14 @@ template_path = "./template.html"
 dir_path_public = "./docs"
 
 def main():
-    print(TextNode("This is some anchor text", TextType.LINK, "https://www.boot.dev"))
-    if os.path.exists("public"):
-        shutil.rmtree("public")
-    os.mkdir("public")
-    copy_recursive("static", "public")
-    generate_pages_recursive(dir_path_content, template_path, dir_path_public)
+    basepath = "/"
+    if len(sys.argv) > 1:
+        basepath = sys.argv[1]
+    if os.path.exists("docs"):
+        shutil.rmtree("docs")
+    os.mkdir("docs")
+    copy_recursive("static", "docs")
+    generate_pages_recursive(dir_path_content, template_path, dir_path_public, basepath)
 
 def copy_recursive(source, destination):
     for item in os.listdir(source):
