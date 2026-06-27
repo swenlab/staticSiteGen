@@ -7,7 +7,7 @@ from gen_content import generate_pages_recursive
 
 dir_path_content = "./content"
 template_path = "./template.html"
-dir_path_public = "./public"
+dir_path_public = "./docs"
 
 def main():
     print(TextNode("This is some anchor text", TextType.LINK, "https://www.boot.dev"))
